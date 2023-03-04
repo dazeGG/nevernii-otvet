@@ -39,7 +39,7 @@ export default defineComponent({
 
 <style lang="scss">
 @mixin label-active {
-	top: -2.3rem;
+	top: -2.5rem;
 	font-size: 1rem;
 	width: fit-content;
 }
@@ -48,7 +48,7 @@ export default defineComponent({
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	margin-top: 2rem;
+	margin-top: 1.5rem;
 
 	* {
 		transition: var(--default-transition);
