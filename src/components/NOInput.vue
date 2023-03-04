@@ -1,13 +1,11 @@
 <template lang="pug">
 label.no-input
-	input.no-input__input(:type="type" v-model="inputValue")
+	input.no-input__input(:type="type" v-model="inputValue" @input="onInput")
 	.no-input__label(:class="{active: inputValue}") {{ label }}
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-
-import {ref} from 'vue';
 
 export default defineComponent({
 	name: 'NOInput',
@@ -17,11 +15,24 @@ export default defineComponent({
 			type: String,
 			default: 'text',
 		},
+		value: {
+			type: String,
+			default: '',
+		},
 	},
-	setup () {
-		const inputValue = ref<string>('');
-
-		return {inputValue};
+	model: {
+		prop: 'value',
+		event: 'input',
+	},
+	data () {
+		return {
+			inputValue: this.value,
+		};
+	},
+	methods: {
+		onInput () {
+			this.$emit('input-data', this.inputValue);
+		},
 	},
 });
 </script>
@@ -48,7 +59,7 @@ export default defineComponent({
 		position: absolute;
 		z-index: 2;
 		left: 0;
-		top: 0;
+		top: -0.1rem;
 		width: 100%;
 		height: 100%;
 		padding-left: 0.75rem;
