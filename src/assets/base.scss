@@ -24,7 +24,10 @@
     --color-border-hover: var(--vt-c-divider-light-1);
     --color-heading: var(--vt-c-text-light-1);
     --color-text: var(--vt-c-text-light-1);
+
+    /* more variables */
     --section-gap: 160px;
+    --default-transition: 190ms ease-in-out;
 }
 
 @media (prefers-color-scheme: dark) {
