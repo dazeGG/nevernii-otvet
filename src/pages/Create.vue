@@ -6,7 +6,7 @@ NOInput(label="Вопрос")
 <script lang="ts">
 import {defineComponent} from 'vue';
 
-import NOInput from '@/components/Input.vue';
+import NOInput from '@/components/NOInput.vue';
 
 export default defineComponent({
 	name: 'CreatePage',
