@@ -1,0 +1,27 @@
+<template lang="pug">
+button.no-button(@click="$emit('button-click')")
+	h2 {{ text }}
+</template>
+
+<script lang="ts">
+import {defineComponent} from 'vue';
+
+export default defineComponent({
+	name: 'NOButton',
+	props: {
+		text: {
+			type: String,
+			required: true,
+		},
+	},
+});
+</script>
+
+<style lang="scss">
+.no-button {
+	background-color: hsl(160deg 100% 37% / 100%);
+	border-radius: 5px;
+	padding: 0.75rem;
+	font: inherit;
+}
+</style>

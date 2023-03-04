@@ -1,0 +1,24 @@
+@import 'base';
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+a,
+.green {
+    color: hsl(160deg 100% 37% / 100%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-heading);
+}
