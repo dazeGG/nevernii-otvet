@@ -1,6 +1,10 @@
 <template lang="pug">
-h1 Create Page
-NOInput(label="Вопрос" :value="question" @input-data="onInput")
+.create-page
+	h1 Введите данные
+	NOInput.create-page__question(label="Вопрос" :value="question" @input-data="(value: string) => question = value")
+	.create-page__answers
+		NOInput(label="Верный ответ" :value="answerYes" @input-data="(value: string) => answerYes = value")
+		NOInput(label="Неверный ответ" :value="answerNo" @input-data="(value: string) => answerNo = value")
 </template>
 
 <script lang="ts">
@@ -15,11 +19,25 @@ export default defineComponent({
 	},
 	setup () {
 		const question = ref<string>('');
-		const onInput = (value: string) => question.value = value;
-		return {question, onInput};
+		const answerYes = ref<string>('');
+		const answerNo = ref<string>('');
+		return {question, answerYes, answerNo};
 	},
 });
 </script>
 
 <style lang="scss">
+.create-page {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1rem;
+
+	&__answers {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 1.5rem;
+	}
+}
 </style>
