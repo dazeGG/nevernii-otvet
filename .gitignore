@@ -31,4 +31,4 @@ coverage
 .stylelintcache
 
 # Environment variables
-.env
+.env*
