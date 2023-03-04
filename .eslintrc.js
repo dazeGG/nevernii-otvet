@@ -15,7 +15,6 @@ module.exports = {
 		semi: ['error', 'always'],
 		quotes: ['error', 'single'],
 		'comma-dangle': ['error', 'always-multiline'],
-		// 'vue/multi-word-component-names': 'off',
 	},
 	parserOptions: {
 		ecmaVersion: 'latest',
