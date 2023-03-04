@@ -1,6 +1,6 @@
 <template lang="pug">
 .create-page
-	h1 Введите данные
+	h1 Введи данные
 	NOInput.create-page__question(label="Вопрос" :value="question" @input-data="(value: string) => question = value")
 	.create-page__answers
 		NOInput(label="Верный ответ" :value="answerYes" @input-data="(value: string) => answerYes = value")
