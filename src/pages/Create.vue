@@ -29,6 +29,7 @@ export default defineComponent({
 
 		const submit = () => {
 			const formData = new FormData();
+
 			formData.set('question_text', question.value);
 			formData.set('answer_yes', answerYes.value);
 			formData.set('answer_no', answerNo.value);
