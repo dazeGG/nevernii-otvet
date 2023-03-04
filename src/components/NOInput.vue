@@ -73,7 +73,7 @@ export default defineComponent({
 
 	&__input {
 		background-color: var(--color-background-mute);
-		border: 1px solid var(--color-border);
+		border: 2px solid var(--color-border);
 		padding: 0.75rem;
 		outline: none;
 		color: var(--color-heading);
