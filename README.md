@@ -45,7 +45,7 @@ pnpm build
 pnpm test:unit
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Lint with [ESLint](https://eslint.org/) and [Stylelint](https://stylelint.io/)
 
 ```sh
 pnpm lint
