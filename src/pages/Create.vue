@@ -1,15 +1,14 @@
 <template lang="pug">
-RouterView
+h1 Create Page
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 
-import {RouterView} from 'vue-router';
-
 export default defineComponent({
-	components: {
-		RouterView,
-	},
+	name: 'CreatePage',
 });
 </script>
+
+<style lang="scss">
+</style>
