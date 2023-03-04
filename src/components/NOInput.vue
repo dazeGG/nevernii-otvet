@@ -45,13 +45,13 @@ export default defineComponent({
 }
 
 .no-input {
-	display: flex;
-	flex-direction: column;
+	width: 100%;
 	position: relative;
 	margin-top: 1.5rem;
 
 	* {
 		transition: var(--default-transition);
+		width: 100%;
 	}
 
 	&__label {
