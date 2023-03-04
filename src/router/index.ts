@@ -11,7 +11,7 @@ const router = createRouter({
 		},
 		{
 			path: Routes.create,
-			name: 'about',
+			name: 'create',
 			component: () => import('../pages/Create.vue'),
 		},
 	],
