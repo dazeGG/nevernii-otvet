@@ -5,23 +5,38 @@
 	.create-page__answers
 		NOInput(label="Верный ответ" :value="answerYes" @input-data="(value: string) => answerYes = value")
 		NOInput(label="Неверный ответ" :value="answerNo" @input-data="(value: string) => answerNo = value")
+	NOButton.create-page__submit(text="Создать вопрос" @button-click="submit")
 </template>
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
 
 import NOInput from '@/components/NOInput.vue';
+import NOButton from '@/components/NOButton.vue';
+
+import {createQuestion} from '@/api/questions';
 
 export default defineComponent({
 	name: 'CreatePage',
 	components: {
 		NOInput,
+		NOButton,
 	},
 	setup () {
 		const question = ref<string>('');
 		const answerYes = ref<string>('');
 		const answerNo = ref<string>('');
-		return {question, answerYes, answerNo};
+
+		const submit = () => {
+			const formData = new FormData();
+			formData.set('question_text', question.value);
+			formData.set('answer_yes', answerYes.value);
+			formData.set('answer_no', answerNo.value);
+
+			createQuestion(formData).then(r => console.log(r)).catch(e => console.log(e));
+		};
+
+		return {question, answerYes, answerNo, submit};
 	},
 });
 </script>
