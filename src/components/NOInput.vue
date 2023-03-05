@@ -39,15 +39,24 @@ export default defineComponent({
 
 <style lang="scss">
 @mixin label-active {
-	top: -2.5rem;
+	top: -2rem;
 	font-size: 1rem;
 	width: fit-content;
+}
+
+@mixin input-text {
+	font-size: 1.2rem;
+	padding: 0.5rem 1rem;
+
+	@media only screen and (max-width: 480px) {
+		font-size: 1rem;
+	}
 }
 
 .no-input {
 	width: 100%;
 	position: relative;
-	margin-top: 1.5rem;
+	margin-top: 1.2rem;
 
 	* {
 		transition: var(--default-transition);
@@ -55,14 +64,14 @@ export default defineComponent({
 	}
 
 	&__label {
-		font-size: 1.5rem;
+		@include input-text;
+
 		position: absolute;
 		z-index: 2;
 		left: 0;
 		top: -0.1rem;
 		width: 100%;
 		height: 100%;
-		padding-left: 1rem;
 		display: flex;
 		align-items: center;
 		cursor: pointer;
@@ -73,13 +82,13 @@ export default defineComponent({
 	}
 
 	&__input {
+		@include input-text;
+
 		background-color: var(--color-background-mute);
 		border: 2px solid var(--color-border);
-		padding: 0.5rem 1rem;
 		outline: none;
 		color: var(--color-heading);
 		border-radius: 5px;
-		font-size: 1.5rem;
 
 		&:focus {
 			border-color: var(--color-border-hover);
