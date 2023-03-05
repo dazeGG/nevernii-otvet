@@ -25,6 +25,7 @@ export default defineComponent({
 	font: inherit;
 	border: none;
 	cursor: pointer;
+	color: var(--color-heading);
 
 	h3 {
 		font-size: 1.2rem;
