@@ -4,7 +4,7 @@ button.no-button.no-button-no(@click="$emit('button-click')" ref="buttonElement"
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, onMounted} from 'vue';
+import {defineComponent, ref, onMounted, onUnmounted} from 'vue';
 
 import {checkLeft, checkTop, checkRight, checkBottom} from '@/utils/checkButtonSidesByMouse';
 
@@ -39,7 +39,8 @@ export default defineComponent({
 			const bottom: boolean = checkBottom(offset, mouseX, mouseY, buttonBottomY, buttonLeftX, buttonRightX);
 		};
 
-		onMounted(() => addEventListener('mousemove', (event: MouseEvent) => mouseCoordsCheck(event)));
+		onMounted(() => document.addEventListener('mousemove', mouseCoordsCheck));
+		onUnmounted(() => document.removeEventListener('mousemove', mouseCoordsCheck));
 
 		return {buttonElement};
 	},
