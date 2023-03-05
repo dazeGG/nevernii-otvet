@@ -23,5 +23,7 @@ export default defineComponent({
 	border-radius: 5px;
 	padding: 0.75rem;
 	font: inherit;
+	border: none;
+	cursor: pointer;
 }
 </style>
