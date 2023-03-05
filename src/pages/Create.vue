@@ -1,58 +1,104 @@
 <template lang="pug">
-.create-page
-	h1 Введите данные
-	NOInput.create-page__question(label="Вопрос" :value="question" @input-data="(value: string) => question = value")
-	.create-page__answers
+.create-page(v-if="!success")
+	h1 Введи данные
+	.create-page__form
+		NOInput.create-page__question(label="Вопрос" :value="questionText" @input-data="(value: string) => questionText = value")
 		NOInput(label="Верный ответ" :value="answerYes" @input-data="(value: string) => answerYes = value")
 		NOInput(label="Неверный ответ" :value="answerNo" @input-data="(value: string) => answerNo = value")
-	NOButton.create-page__submit(text="Создать вопрос" @button-click="submit")
+		NOButton.create-page__submit(text="Создать вопрос" @button-click="submit")
+.create-page(v-else)
+	h1 Вопрос успешно создан!
+	.create-page__link
+		span Ссылка:&nbsp;
+		a(:href="createdQuestionLink") {{ createdQuestionLink }}
+		span.create-page__link--buttons
+			RouterLink.no-button(:to="createdQuestionRoute") Перейти
+			button.no-button(@click="copyLink") Скопировать
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
+import {defineComponent, ref, computed} from 'vue';
+import type {ComputedRef} from 'vue';
+import {RouterLink} from 'vue-router';
 
 import NOInput from '@/components/NOInput.vue';
 import NOButton from '@/components/NOButton.vue';
+
+import type IQuestion from '@/interfaces/IQuestion';
 
 import {createQuestion} from '@/api/questions';
 
 export default defineComponent({
 	name: 'CreatePage',
 	components: {
+		RouterLink,
 		NOInput,
 		NOButton,
 	},
 	setup () {
-		const question = ref<string>('');
+		const questionText = ref<string>('');
 		const answerYes = ref<string>('');
 		const answerNo = ref<string>('');
 
+		const question = ref<IQuestion>({
+			id: -1,
+			question_text: 'ты хорош?',
+			answer_yes: 'да',
+			answer_no: 'нет',
+		});
+		let success = ref<boolean>(false);
+
 		const submit = () => {
 			const formData = new FormData();
-			formData.set('question_text', question.value);
+
+			formData.set('question_text', questionText.value);
 			formData.set('answer_yes', answerYes.value);
 			formData.set('answer_no', answerNo.value);
 
-			createQuestion(formData).then(r => console.log(r)).catch(e => console.log(e));
+			createQuestion(formData)
+				.then((res: Response): void => {
+					if (res.status === 201) {
+						// @ts-ignore
+						question.value = res.data;
+						success.value = true;
+					}
+				})
+				.catch((e: Error): void => console.log(e));
 		};
 
-		return {question, answerYes, answerNo, submit};
+		const createdQuestionRoute: ComputedRef = computed((): string => `/question/${question.value.id}`);
+		const createdQuestionLink: ComputedRef = computed((): string => `https://neverniiotvet.ru/question/${question.value.id}`);
+
+		const copyLink: Function = async () => await navigator.clipboard.writeText(createdQuestionLink.value);
+
+		return {questionText, answerYes, answerNo, success, createdQuestionRoute, createdQuestionLink, submit, copyLink};
 	},
 });
 </script>
 
 <style lang="scss">
 .create-page {
-	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: 1rem;
+	gap: 1.2rem;
 
-	&__answers {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-gap: 1.5rem;
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	&__submit {
+		margin-top: 1.2rem;
+	}
+
+	&__link {
+		&--buttons {
+			margin-top: 0.5rem;
+			display: flex;
+			gap: 0.5rem;
+		}
 	}
 }
 </style>

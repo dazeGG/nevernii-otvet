@@ -23,7 +23,6 @@ export default defineComponent({
 
 <style lang="scss">
 .home-page {
-	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
