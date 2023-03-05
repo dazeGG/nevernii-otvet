@@ -45,7 +45,6 @@ export default defineComponent({
 
 <style lang="scss">
 .question-page {
-	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

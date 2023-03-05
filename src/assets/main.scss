@@ -1,9 +1,12 @@
 @import 'base';
 
 #app {
+    min-height: 100vh;
     max-width: 620px;
     padding: 0 10px;
     margin: 0 auto;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 a {

@@ -44,7 +44,6 @@ export default defineComponent({
 
 <style lang="scss">
 .create-page {
-	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
