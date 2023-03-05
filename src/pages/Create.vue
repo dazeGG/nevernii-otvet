@@ -40,7 +40,12 @@ export default defineComponent({
 		const answerYes = ref<string>('');
 		const answerNo = ref<string>('');
 
-		let questionData: IQuestion;
+		const question = ref<IQuestion>({
+			id: -1,
+			question_text: 'ты хорош?',
+			answer_yes: 'да',
+			answer_no: 'нет',
+		});
 		let success = ref<boolean>(false);
 
 		const submit = () => {
@@ -54,14 +59,12 @@ export default defineComponent({
 				.then((res: Response): void => {
 					if (res.status === 201) {
 						// @ts-ignore
-						questionData = res.data;
+						question.value = res.data;
 						success.value = true;
 					}
 				})
 				.catch((e: Error): void => console.log(e));
 		};
-
-		const question: ComputedRef = computed((): IQuestion => questionData);
 
 		const createdQuestionRoute: ComputedRef = computed((): string => `/question/${question.value.id}`);
 		const createdQuestionLink: ComputedRef = computed((): string => `https://neverniiotvet.ru/question/${question.value.id}`);
