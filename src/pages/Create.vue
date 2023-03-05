@@ -3,9 +3,8 @@
 	h1 Введи данные
 	.create-page__form
 		NOInput.create-page__question(label="Вопрос" :value="questionText" @input-data="(value: string) => questionText = value")
-		.create-page__answers
-			NOInput(label="Верный ответ" :value="answerYes" @input-data="(value: string) => answerYes = value")
-			NOInput(label="Неверный ответ" :value="answerNo" @input-data="(value: string) => answerNo = value")
+		NOInput(label="Верный ответ" :value="answerYes" @input-data="(value: string) => answerYes = value")
+		NOInput(label="Неверный ответ" :value="answerNo" @input-data="(value: string) => answerNo = value")
 		NOButton.create-page__submit(text="Создать вопрос" @button-click="submit")
 </template>
 
@@ -16,7 +15,7 @@ import type {ComputedRef} from 'vue';
 import NOInput from '@/components/NOInput.vue';
 import NOButton from '@/components/NOButton.vue';
 
-import {useQuestionStore} from '@/stores/questions';
+import {useQuestionStore} from '@/stores/question';
 
 export default defineComponent({
 	name: 'CreatePage',
@@ -45,18 +44,16 @@ export default defineComponent({
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: 1.5rem;
+	gap: 1.2rem;
 
 	&__form {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 0.5rem;
 	}
 
-	&__answers {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-gap: 1rem;
+	&__submit {
+		margin-top: 1.2rem;
 	}
 }
 </style>
