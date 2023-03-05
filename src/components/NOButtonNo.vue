@@ -6,6 +6,8 @@ button.no-button.no-button-no(@click="$emit('button-click')" ref="buttonElement"
 <script lang="ts">
 import {defineComponent, ref, onMounted} from 'vue';
 
+import {checkLeft, checkTop, checkRight, checkBottom} from '@/utils/checkButtonSidesByMouse';
+
 export default defineComponent({
 	props: {
 		text: {
@@ -18,19 +20,23 @@ export default defineComponent({
 
 		const offset: number = 40;
 
-		const checkLeft = (mouseX: number, buttonLeft: number): boolean => buttonLeft - mouseX <= offset;
-		const checkTop = (mouseY: number, buttonTop: number): boolean => buttonTop - mouseY <= offset;
-		const checkRight = (mouseX: number, buttonRight: number): boolean => mouseX - buttonRight <= offset;
-		const checkBottom = (mouseY: number, buttonRight: number): boolean => mouseY - buttonRight <= offset;
-
 		const mouseCoordsCheck = (event: MouseEvent) => {
 			// console.log(event);
 			// console.log(buttonElement.value.getBoundingClientRect());
 			const buttonRect: DOMRect = buttonElement.value.getBoundingClientRect();
-			const left: boolean = checkLeft(event.x || event.clientX, buttonRect.x || buttonRect.left);
-			const top: boolean = checkTop(event.y || event.clientY, buttonRect.y || buttonRect.top);
-			const right: boolean = checkRight(event.x || event.clientX, buttonRect.x + buttonRect.width || buttonRect.right);
-			const bottom: boolean = checkBottom(event.y || event.clientY, buttonRect.y + buttonRect.height || buttonRect.bottom);
+
+			const mouseX: number = event.x || event.clientX;
+			const mouseY: number = event.y || event.clientY;
+
+			const buttonLeftX: number = buttonRect.x || buttonRect.left;
+			const buttonRightX: number = buttonLeftX + buttonRect.width;
+			const buttonTopY: number = buttonRect.y || buttonRect.top;
+			const buttonBottomY: number = buttonTopY + buttonRect.height;
+
+			const left: boolean = checkLeft(offset, mouseX, mouseY, buttonLeftX, buttonTopY, buttonBottomY);
+			const top: boolean = checkTop(offset, mouseX, mouseY, buttonTopY, buttonLeftX, buttonRightX);
+			const right: boolean = checkRight(offset, mouseX, mouseY, buttonRightX, buttonTopY, buttonBottomY);
+			const bottom: boolean = checkBottom(offset, mouseX, mouseY, buttonBottomY, buttonLeftX, buttonRightX);
 		};
 
 		onMounted(() => addEventListener('mousemove', (event: MouseEvent) => mouseCoordsCheck(event)));
