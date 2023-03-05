@@ -42,6 +42,11 @@ export default defineComponent({
 	top: -2rem;
 	font-size: 1rem;
 	width: fit-content;
+
+	@media only screen and (max-width: 480px) {
+		top: -1.8rem;
+		font-size: 0.8rem;
+	}
 }
 
 @mixin input-text {
