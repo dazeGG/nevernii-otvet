@@ -21,7 +21,7 @@ export default defineComponent({
 .no-button {
 	background-color: hsl(160deg 100% 37% / 100%);
 	border-radius: 5px;
-	padding: 0.75rem;
+	padding: 0.5rem 1rem;
 	font: inherit;
 	border: none;
 	cursor: pointer;

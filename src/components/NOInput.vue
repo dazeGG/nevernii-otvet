@@ -62,7 +62,7 @@ export default defineComponent({
 		top: -0.1rem;
 		width: 100%;
 		height: 100%;
-		padding-left: 0.75rem;
+		padding-left: 1rem;
 		display: flex;
 		align-items: center;
 		cursor: pointer;
@@ -75,7 +75,7 @@ export default defineComponent({
 	&__input {
 		background-color: var(--color-background-mute);
 		border: 2px solid var(--color-border);
-		padding: 0.75rem;
+		padding: 0.5rem 1rem;
 		outline: none;
 		color: var(--color-heading);
 		border-radius: 5px;
