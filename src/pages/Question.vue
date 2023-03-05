@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onBeforeMount} from 'vue';
+import {defineComponent, ref, onBeforeMount} from 'vue';
 import {useRoute} from 'vue-router';
 
 import NOButton from '@/components/NOButton.vue';
@@ -26,16 +26,23 @@ export default defineComponent({
 	setup () {
 		const questionID: number = parseInt(String(useRoute().params.id), 10);
 
-		const question: IQuestion = {
+		let question = ref<IQuestion>({
 			id: questionID,
-			question_text: 'ты пидор?',
+			question_text: 'ты хорош?',
 			answer_yes: 'да',
 			answer_no: 'нет',
-		};
+		});
 
 		onBeforeMount(() => {
-			// ! getQuestion from back
-			getQuestion(questionID).then(r => console.log(r)).catch(e => console.log(e));
+			getQuestion(questionID)
+				.then((res: Response) => {
+					if (res.status === 200) {
+						// @ts-ignore
+						question.value = res.data;
+						console.log(question.value);
+					}
+				})
+				.catch(e => console.log(e));
 		});
 
 		return {question};
