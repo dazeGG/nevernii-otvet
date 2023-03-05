@@ -16,6 +16,7 @@ export default defineComponent({
 		},
 	},
 	setup () {
+		// @ts-ignore
 		const buttonElement = ref<HTMLElement>(null);
 
 		const offset: number = 40;
