@@ -65,6 +65,7 @@ export default defineComponent({
 		padding-left: 0.75rem;
 		display: flex;
 		align-items: center;
+		cursor: pointer;
 
 		&.active {
 			@include label-active;
