@@ -1,6 +1,6 @@
 <template lang="pug">
 button.no-button.no-button-no(@click="$emit('button-click')" ref="buttonElement")
-	h2 {{ text }}
+	h3 {{ text }}
 </template>
 
 <script lang="ts">
