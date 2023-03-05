@@ -4,9 +4,9 @@ slot
 footer.footer
 	span
 		| Создано&nbsp;
-		a(href="https://github.com/dazeGG" target="_blank") dazeGG
+		a(href="https://github.com/dazeGG" target="_blank") daze
 		| &nbsp;и&nbsp;
-		a(href="https://github.com/karioka21" target="_blank") karioka21
+		a(href="https://github.com/karioka21" target="_blank") karioka
 </template>
 
 <script lang="ts" setup>
