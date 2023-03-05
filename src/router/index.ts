@@ -17,7 +17,7 @@ const router = createRouter({
 		{
 			path: Routes.question,
 			name: 'question',
-			component: () => import('../pages/QuestionPage.vue'),
+			component: () => import('../pages/Question.vue'),
 		},
 	],
 });
