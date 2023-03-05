@@ -1,7 +1,7 @@
 <template lang="pug">
 .create-page
 	h1 Введи данные
-	NOInput.create-page__question(label="Вопрос" :value="question" @input-data="(value: string) => question = value")
+	NOInput.create-page__question(label="Вопрос" :value="questionText" @input-data="(value: string) => questionText = value")
 	.create-page__answers
 		NOInput(label="Верный ответ" :value="answerYes" @input-data="(value: string) => answerYes = value")
 		NOInput(label="Неверный ответ" :value="answerNo" @input-data="(value: string) => answerNo = value")
@@ -23,21 +23,21 @@ export default defineComponent({
 		NOButton,
 	},
 	setup () {
-		const question = ref<string>('');
+		const questionText = ref<string>('');
 		const answerYes = ref<string>('');
 		const answerNo = ref<string>('');
 
 		const submit = () => {
 			const formData = new FormData();
 
-			formData.set('question_text', question.value);
+			formData.set('question_text', questionText.value);
 			formData.set('answer_yes', answerYes.value);
 			formData.set('answer_no', answerNo.value);
 
 			createQuestion(formData).then(r => console.log(r)).catch(e => console.log(e));
 		};
 
-		return {question, answerYes, answerNo, submit};
+		return {questionText, answerYes, answerNo, submit};
 	},
 });
 </script>
