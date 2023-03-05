@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import {createQuestion} from '@/api/questions';
 import type IQuestion from '@/interfaces/IQuestion';
 
-export const useQuestionStore = defineStore('questions', () => {
+export const useQuestionStore = defineStore('question', () => {
 	let question: IQuestion;
 
 	const getQuestion: Function = (): IQuestion => question;
