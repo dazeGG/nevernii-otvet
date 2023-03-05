@@ -1,6 +1,6 @@
 <template lang="pug">
 button.no-button(@click="$emit('button-click')")
-	h2 {{ text }}
+	h3 {{ text }}
 </template>
 
 <script lang="ts">
@@ -25,5 +25,13 @@ export default defineComponent({
 	font: inherit;
 	border: none;
 	cursor: pointer;
+
+	h3 {
+		font-size: 1.2rem;
+
+		@media only screen and (max-width: 480px) {
+				font-size: 1rem;
+		}
+	}
 }
 </style>
