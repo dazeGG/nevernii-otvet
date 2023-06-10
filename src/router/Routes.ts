@@ -1,5 +1,5 @@
 export default {
-	home: '/',
-	create: '/create',
-	question: '/question/:id',
+    home: '/',
+    create: '/create',
+    question: '/question/:id',
 };

@@ -4,4 +4,4 @@ const getQuestion = (id: number | string): Promise<Response> => api.get(`/questi
 
 const createQuestion = (data: FormData): Promise<Response> => api.post('/question/', data);
 
-export {getQuestion, createQuestion};
+export { getQuestion, createQuestion };
